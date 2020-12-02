@@ -51,6 +51,6 @@
     <div class="h-px my-4 bg-gray-700" />
     <button
       on:click={() => signIn('public', 'public')}
-      class="w-full px-4 py-2 font-bold text-white bg-indigo-700 rounded hover:bg-green-500">Try the Public board</button>
+      class="w-full px-4 py-2 font-bold text-white bg-indigo-800 rounded hover:bg-indigo-600">Try the Public board</button>
   </div>
 </div>

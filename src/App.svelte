@@ -17,7 +17,7 @@
 <main class="h-full">
   {#await $authPromise}
     <div class="grid w-full h-full place-items-center">
-      <Spinner size="50" speed="750" color="#bada55" thickness="2" gap="40" />
+      <Spinner size="100" speed="750" color="#bada55" thickness="2" gap="40" />
     </div>
   {:then _}
     {#if $user}
