@@ -3,6 +3,8 @@
   import { user, authPromise } from './stores/authStore'
   import Login from './components/Login.svelte'
   import Main from './components/Main.svelte'
+
+  //let promise = authPromise // this local variable allows await to be more conservative on updates (svelte issue #2355)
 </script>
 
 <style global>

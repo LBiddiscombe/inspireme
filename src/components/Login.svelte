@@ -1,10 +1,11 @@
 <script>
-  import { signUp, signIn } from '../stores/authStore'
+  import { signUp, signIn, authError } from '../stores/authStore'
   let username,
     password,
     isSignInMode = true
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault()
     if (isSignInMode) {
       signIn(username, password)
     } else {
@@ -21,10 +22,10 @@
     </header>
 
     <button
-      class="w-full px-4 py-2 mb-4 text-sm text-center text-green-700 underline border-0 outline-none"
+      class="w-full px-4 py-2 mb-4 text-sm text-center text-gray-600 underline border-0 outline-none"
       on:click={() => (isSignInMode = !isSignInMode)}
-      type="button">{isSignInMode ? 'New to InspireME? Create a new user' : 'Already joined? Sign in existing user'}</button>
-    <form>
+      type="button">{isSignInMode ? 'New to InspireME? Create an account' : 'Already joined? Sign in existing user'}</button>
+    <form on:submit|preventDefault={handleSubmit}>
       <div>
         <label class="flex mb-2 text-gray-800 bg-gray-300 border border-gray-400 rounded-sm">
           <svg
@@ -49,7 +50,7 @@
         </label>
       </div>
       <div>
-        <label class="flex mb-8 text-gray-800 bg-gray-300 border border-gray-400 rounded-sm">
+        <label class="flex text-gray-800 bg-gray-300 border border-gray-400 rounded-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="px-1 stroke-current"
@@ -72,11 +73,13 @@
             bind:value={password} />
         </label>
       </div>
+      <p class="my-2 text-center text-red-400" style={`visibility: ${$authError ? 'visible' : 'hidden'}`}>
+        {$authError}
+      </p>
       <div>
         <button
-          on:click|preventDefault={handleSubmit}
           type="submit"
-          class="w-full px-4 py-2 mb-4 font-bold text-white bg-green-700 rounded hover:bg-green-500">{isSignInMode ? 'Sign In' : 'Sign Up'}</button>
+          class="w-full px-4 py-2 mb-4 font-bold text-white bg-green-700 rounded hover:bg-green-500">{isSignInMode ? 'Sign In' : 'Create Account'}</button>
       </div>
     </form>
     <div class="h-px my-4 bg-gray-700" />
