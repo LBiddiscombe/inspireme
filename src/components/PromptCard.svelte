@@ -1,5 +1,7 @@
 <script>
-  export let category
+  export let prompt
+
+  let { title, image, summary } = prompt
 </script>
 
 <style>
@@ -8,6 +10,7 @@
     width: 25%;
     min-width: 20rem;
   }
+
   @media screen and (max-width: 450px) {
     .card {
       width: calc(100vw - 5rem);
@@ -15,22 +18,13 @@
   }
 </style>
 
-<div class="p-2 card">
+<div class="relative p-2 card">
   <div class="h-full overflow-hidden bg-gray-900 rounded-lg shadow-lg">
-    <img
-      class="object-cover object-center w-full h-56"
-      src="https://source.unsplash.com/304x224/?{category}"
-      alt="blog" />
+    <img class="object-cover object-center w-full h-56" src={image} alt="hero" />
     <div class="p-4">
-      <h1 class="mb-3 text-lg font-medium text-gray-500 title-font">
-        <slot name="title">Cool Title</slot>
-      </h1>
-      <p class="mb-3 leading-relaxed">
-        <slot name="desciption">
-          When I was first asked to make a film about my nephew, Hubert Farnsworth, I thought "Why should I?"
-        </slot>
-      </p>
-      <span class="float-right my-2 -mr-2 text-gray-500">
+      <h1 class="mb-3 text-lg font-medium text-gray-500 title-font">{title}</h1>
+      <p class="mb-3 leading-relaxed">{summary}</p>
+      <span class="absolute bottom-0 right-0 my-3 mr-3 text-gray-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="stroke-current"

@@ -1,10 +1,13 @@
 <script>
   import { user, signOut } from '../stores/authStore'
-  import FullCard from './FullCard.svelte'
+  import { food, places } from '../stores/publicDataStore'
   import PromptCard from './PromptCard.svelte'
 
-  const categories = ['Food', 'Places', 'Games', 'Crafts']
-  let prompts = [0, 1, 2, 3, 4, 5, 6, 7]
+  const categories = ['food', 'places']
+
+  let prompts = {}
+  prompts.food = $food
+  prompts.places = $places
 </script>
 
 <style>
@@ -38,14 +41,31 @@
 <div class="flex flex-col h-full max-w-screen-xl mx-auto categories">
   {#each categories as category}
     <div class="mb-16 category">
-      <div class="grid w-full grid-cols-2 space-between">
-        <h2 class="my-4 ml-2 text-2xl font-bold">{category}</h2>
-        <button class="w-12 h-12 my-2 text-3xl text-white bg-indigo-800 rounded-full justify-self-end">+</button>
+      <div class="grid w-full grid-cols-2 align-items-center">
+        <h2 class="ml-2 text-2xl font-bold capitalize">{category}</h2>
+        <button
+          class="grid w-12 h-12 text-3xl text-gray-200 border-0 rounded-full outline-none place-items-center justify-self-end">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <line x1="9" y1="12" x2="15" y2="12" />
+            <line x1="12" y1="9" x2="12" y2="15" />
+          </svg>
+        </button>
       </div>
       <div
         class="grid grid-flow-col auto-cols-auto list justify-items-center sm:flex sm:flex-wrap sm:w-full sm:justify-start">
-        {#each prompts as prompt}
-          <PromptCard {category}><span slot="title">{category} Card {prompt}</span></PromptCard>
+        {#each prompts[category] as prompt (prompt.id)}
+          <PromptCard {prompt} />
         {/each}
       </div>
     </div>
