@@ -28,6 +28,10 @@
       scroll-snap-align: start;
     }
 
+    .category:last-of-type {
+      scroll-snap-align: end;
+    }
+
     .list {
       overflow-x: scroll;
       scroll-snap-type: x proximity;
@@ -41,7 +45,7 @@
 <div class="flex flex-col h-full max-w-screen-xl mx-auto categories">
   {#each categories as category}
     <div class="mb-16 category">
-      <div class="grid w-full grid-cols-2 align-items-center">
+      <div class="grid items-center w-full grid-cols-2">
         <h2 class="ml-2 text-2xl font-bold capitalize">{category}</h2>
         <button
           class="grid w-12 h-12 text-3xl text-gray-200 border-0 rounded-full outline-none place-items-center justify-self-end">
