@@ -1,9 +1,7 @@
 <script>
   import { user, signOut } from '../stores/authStore'
-  import { food, places } from '../stores/publicDataStore'
+  import { categories, food, places } from '../stores/publicDataStore'
   import PromptCard from './PromptCard.svelte'
-
-  const categories = ['food', 'places']
 
   let prompts = {}
   prompts.food = $food
@@ -43,7 +41,7 @@
 </style>
 
 <div class="flex flex-col h-full max-w-screen-xl mx-auto categories">
-  {#each categories as category}
+  {#each $categories as category}
     <div class="mb-16 category">
       <div class="grid items-center w-full grid-cols-2">
         <h2 class="ml-2 text-2xl font-bold capitalize">{category}</h2>

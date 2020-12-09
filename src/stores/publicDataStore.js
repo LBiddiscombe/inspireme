@@ -1,5 +1,7 @@
 import { readable } from 'svelte/store'
 
+export const categories = readable(['food', 'places'])
+
 export const food = readable([
   {
     id: 1,
