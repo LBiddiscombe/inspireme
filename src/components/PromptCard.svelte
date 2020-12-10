@@ -7,6 +7,12 @@
 </script>
 
 <style>
+  .summary:not(.expanded) {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 </style>
 
 <div class="h-full overflow-hidden bg-gray-900 rounded-lg shadow-lg" on:click={() => (selected = prompt)}>
@@ -14,7 +20,7 @@
   <img class="object-cover object-center w-full h-56" src={image} alt="hero" />
   <div class="p-4">
     <h1 class="mb-3 text-lg font-medium text-gray-500 title-font">{title}</h1>
-    <p class="mb-3 leading-relaxed">{summary}</p>
+    <p class="mb-3 leading-relaxed summary" class:expanded>{summary}</p>
     {#if !expanded}
       <span class="absolute bottom-0 right-0 my-3 mr-3 text-gray-500">
         <svg
