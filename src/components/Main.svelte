@@ -2,13 +2,22 @@
   import { user, signOut } from '../stores/authStore'
   import { categories, food, places } from '../stores/publicDataStore'
   import PromptCard from './PromptCard.svelte'
+  import Modal from './Modal.svelte'
 
   let prompts = {}
   prompts.food = $food
   prompts.places = $places
+
+  let selectedPrompt = null
 </script>
 
 <style>
+  .card {
+    scroll-snap-align: center;
+    width: 25%;
+    min-width: 20rem;
+  }
+
   .list::after {
     content: '';
     flex: auto;
@@ -36,6 +45,10 @@
       scroll-snap-points-x: repeat(100%);
       scroll-snap-type: mandatory;
       scroll-snap-destination: 100% 0%;
+    }
+
+    .card {
+      width: calc(100vw - 5rem);
     }
   }
 </style>
@@ -67,12 +80,22 @@
       <div
         class="grid grid-flow-col auto-cols-auto list justify-items-center sm:flex sm:flex-wrap sm:w-full sm:justify-start">
         {#each prompts[category] as prompt (prompt.id)}
-          <PromptCard {prompt} />
+          <div class="relative p-2 card" on:click={() => (selectedPrompt = prompt)}>
+            <PromptCard {prompt} />
+          </div>
         {/each}
       </div>
     </div>
   {/each}
 </div>
+
+{#if selectedPrompt}
+  <Modal on:close={() => (selectedPrompt = null)}>
+    <div class="w-screen h-full max-w-screen-md p-2">
+      <PromptCard prompt={selectedPrompt} expanded={true} />
+    </div>
+  </Modal>
+{/if}
 
 <button class="fixed bottom-0 right-0 px-4 py-2 m-4 capitalize bg-red-400" on:click={signOut}>Sign Out
   {$user.username}</button>
