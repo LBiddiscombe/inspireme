@@ -48,7 +48,10 @@
 
 <svelte:window on:keydown={handle_keydown} />
 
-<div transition:fade={{ duration: 200 }} class="fixed top-0 left-0 w-full h-full bg-gray-800" on:click={close} />
+<div
+  transition:fade={{ duration: 200 }}
+  class="fixed top-0 left-0 w-full h-full bg-gray-800"
+  on:click={close} />
 
 <div
   transition:scale={{ duration: 200, start: 0.25 }}
@@ -67,7 +70,7 @@
       width="44"
       height="44"
       viewBox="2 2 20 20"
-      stroke-width="1"
+      stroke-width="1.5"
       stroke="#2c3e50"
       fill="none"
       stroke-linecap="round"
